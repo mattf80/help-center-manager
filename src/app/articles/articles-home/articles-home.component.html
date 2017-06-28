@@ -1,0 +1,6 @@
+<div class="background" fxLayout fxLayoutAlign="center">
+    <div fxFlex="75%" fxFlex.md>
+        <app-article-search-input (searchingEvent)="search($event)" (filteringEvent)="filter($event)" (sortingEvent)="sort($event)"></app-article-search-input>
+        <app-article-search-results [filterBy]="filterBy" [sortBy]="sortBy" [articles]="articles | async"></app-article-search-results>
+    </div>
+</div>

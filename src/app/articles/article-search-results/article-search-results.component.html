@@ -1,0 +1,60 @@
+<div fxLayout="column">
+    <div fxLayout fxLayoutAlign="start center">
+        <div fxFlex>
+            <md-chip-list>
+                <md-chip color="primary">
+                    Displaying {{filteredArticles.length ? filteredArticles.length : 0}} articles of {{articles?.length}} total
+                </md-chip>
+                <md-chip color="accent" selected="true" *ngIf="filterBy">
+                    Status: {{filterBy}}
+                </md-chip>
+                <md-chip color="accent" selected="true" *ngIf="sortBy">
+                    Sorted by: {{sortBy}}
+                </md-chip>
+            </md-chip-list>
+        </div>
+        <div fxFlex="35%" class="pag-controls">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+    <div>
+        <div class="article-wrapper" *ngFor="let article of filteredArticles | paginate: { itemsPerPage: 8, currentPage: p}">
+            <md-card>
+                <md-card-content>
+                    <div fxLayout fxLayoutAlign="start center">
+                        <div fxFlex="5%" class="article-status">
+                            <md-icon [style.color]="getColour(article)">fiber_manual_record</md-icon>
+                        </div>
+                        <div fxFlex="75%">
+                            <p class="article-title">{{article.title}}</p>
+                            <span class="article-subtitle">Author: {{article.user.name}}</span>
+                            <span class="article-subtitle">Expires: {{article.expiryDate | date:'dd/MM/yyyy'}}</span>
+                            <span class="article-subtitle">Status: {{article.status}}</span>
+                        </div>
+                        <div fxFlex>
+                            <div fxLayout fxLayoutAlign="space-around center">
+                                <div>
+                                    <button md-mini-fab (click)="openArticleDialog(article)" color="accent" mdTooltip="Change expiry">
+                                <md-icon class="md-18">date_range</md-icon>
+                            </button>
+                                </div>
+                                <div>
+                                    <button md-mini-fab (click)="openArticleDialog(article)" color="accent" mdTooltip="Add a review note">
+                                <md-icon class="md-18">note_add</md-icon>
+                            </button>
+                                </div>
+                                <div>
+                                    <button md-mini-fab color="warn" mdTooltip="Delete article!">
+                                <md-icon class="md-18">delete</md-icon>
+                            </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+    </div>
+</div>

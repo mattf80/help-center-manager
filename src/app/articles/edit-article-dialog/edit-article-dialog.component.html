@@ -1,0 +1,48 @@
+<h1 md-dialog-title>Set expiry date</h1>
+<h2 class="mat-subheading-2">{{article.title}}</h2>
+
+<div md-dialog-content fxLayout="column">
+
+  <div fxFlex>
+    <md-button-toggle-group #group="mdButtonToggleGroup" [(ngModel)]="monthsToAdd" (change)="calcExpDate()" >
+      <md-button-toggle value="3">3 months
+      </md-button-toggle>
+      <md-button-toggle value="6">6 months
+      </md-button-toggle>
+      <md-button-toggle value="12">12 months
+      </md-button-toggle>
+    </md-button-toggle-group>
+  </div>
+
+
+  <div class="button-container">
+    <md-radio-group fxLayout="column" [(ngModel)]="startFrom" (change)="calcExpDate()" >
+      <md-radio-button value='1'>From today</md-radio-button>
+      <md-radio-button value='2'>From the current expiry date</md-radio-button>
+    </md-radio-group>
+  </div>
+
+  <div>
+    <p>
+      Or pick a specific date:
+    </p>
+    <md-input-container>
+      <input mdInput [mdDatepicker]="expDatepicker" [(ngModel)]="newExpiryDate">
+      <button mdSuffix [mdDatepickerToggle]="expDatepicker"></button>
+    </md-input-container>
+    <md-datepicker #expDatepicker></md-datepicker>
+  </div>
+
+
+
+
+</div>
+
+<div md-dialog-actions>
+  <button md-raised-button (click)="confirmSelection()" color="accent">
+    Okays!
+  </button>
+  <button md-button (click)="dialogRef.close()">
+    Cancel
+  </button>
+</div>

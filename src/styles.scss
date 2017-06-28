@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+
+
+// always include only once per project
+@include mat-core();
+
+
+// import our custom theme
+@import './themes/default-theme.scss';
+@import './app/app.component.scss';
+@import './app/shared/navbar/navbar-component-theme';
+@import './app/articles/articles-home/articles-home.component.scss-theme';
+
+@mixin custom-components-theme($theme) {
+    @include app-home-component-theme($theme);
+    @include navbar-component-theme($theme);
+    @include articles-home-component-theme($theme);
+}
+
+// specify theme class eg: <body class="my-theme"> ... </body>
+.default-theme {
+  font-family: Roboto;
+  margin: 0px;
+  // use our theme with angular-material-theme mixin
+  @include angular-material-theme($my-theme);
+  @include custom-components-theme($my-theme);
+}

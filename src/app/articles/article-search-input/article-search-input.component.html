@@ -1,0 +1,73 @@
+<div fxLayout fxLayoutAlign="center center" class="search-wrapper">
+  <div fxFlex="50%" fxFlex.lt-md="75%">
+    <md-card>
+      <div fxLayout fxLayoutAlign="space-between center">
+        <md-input-container fxFlex="70%">
+          <input #searchBox mdInput placeholder="Search" (keyup)="search(searchBox.value)">
+        </md-input-container>
+        <div fxFlex="10%">
+          <button class="articles-filter" md-icon-button [mdMenuTriggerFor]="articlesFilter">
+            <md-icon color="primary" mdTooltip="Filter">filter_list</md-icon>
+          </button>
+          <md-menu class="articles-filter-menu" #articlesFilter="mdMenu" xPosition="after">
+            <button md-menu-item (click)="onFilterArticles(null)" [ngClass]="{ active: articles.filter === 'ALL' }">
+            <md-icon style="color: yellow">grade</md-icon>
+            <span>All</span>
+          </button>
+            <button md-menu-item (click)="onFilterArticles('No expiry date!')" [ngClass]="{ active: articles.filter === 'ALL' }">
+            <md-icon style="color: red">error</md-icon>
+            <span>No expiry</span>
+          </button>
+
+            <button md-menu-item (click)="onFilterArticles('Expired')" [ngClass]="{ active: articles.filter === 'ALL' }">
+            <md-icon style="color: red">error</md-icon>
+            <span>Expired</span>
+          </button>
+            <button md-menu-item (click)="onFilterArticles('Expiring soon')" [ngClass]="{ active: articles.filter === 'DONE' }">
+            <md-icon style="color: orange">warning</md-icon>
+            <span>Expiring soon</span>
+          </button>
+            <button md-menu-item (click)="onFilterArticles('Okay')" [ngClass]="{ active: articles.filter === 'ACTIVE' }">
+            <md-icon style="color: green">check_circle</md-icon>
+            <span>Okay</span>
+          </button>
+          </md-menu>
+        </div>
+        <div fxFlex="10%">
+          <button class="articles-filter" md-icon-button [mdMenuTriggerFor]="articlesSort">
+            <md-icon color="primary" mdTooltip="Sort">sort</md-icon>
+          </button>
+          <md-menu class="articles-filter-menu" #articlesSort="mdMenu" xPosition="after">
+            <button md-menu-item (click)="onSortArticles('Author')" [ngClass]="{ active: articles.filter === 'ALL' }">
+            <md-icon>person</md-icon>
+            <span>Author</span>
+          </button>
+
+            <button md-menu-item (click)="onSortArticles('Title')" [ngClass]="{ active: articles.filter === 'ALL' }">
+            <md-icon>title</md-icon>
+            <span>Title</span>
+          </button>
+            <button md-menu-item (click)="onSortArticles('Expiry')" [ngClass]="{ active: articles.filter === 'ALL' }">
+            <md-icon>date_range</md-icon>
+            <span>Expiry date</span>
+          </button>
+            <hr>
+            <md-divider></md-divider>
+            <button md-menu-item (click)="onSortArticles('author')" [ngClass]="{ active: articles.filter === 'ALL' }">
+            <md-icon>keyboard_arrow_up</md-icon>
+            <span>Ascending</span>
+          </button>
+
+            <button md-menu-item (click)="onSortArticles('author')" [ngClass]="{ active: articles.filter === 'ALL' }">
+            <md-icon>keyboard_arrow_down</md-icon>
+            <span>Descending</span>
+          </button>
+
+
+          </md-menu>
+        </div>
+      </div>
+
+    </md-card>
+  </div>
+</div>

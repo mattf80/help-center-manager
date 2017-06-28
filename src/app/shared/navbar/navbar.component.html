@@ -1,0 +1,28 @@
+<md-toolbar color="primary" class="toolbar mat-elevation-z6">
+
+  <md-icon>group_work</md-icon>
+
+  <span class="filler">Help Center</span>
+
+
+  <span class="hidden-sm-down" *ngIf="user | async; else signin; let user">
+          <button md-button class="nav-button" *ngFor="let item of navigation" [routerLink]="[item.link]" routerLinkActive="active">
+            {{item.label}}
+          </button>
+            <button md-icon-button [mdMenuTriggerFor]="menu">
+    <md-icon>more_vert</md-icon>
+  </button>
+  <md-menu #menu="mdMenu">
+    <button md-menu-item>
+      <i class="fa fa-user"></i> {{user?.displayName}}
+    </button>
+    <button md-menu-item (click)="logout()">
+      <i class="fa fa-sign-out"></i> Sign out
+    </button>
+  </md-menu>
+  </span>
+
+  <ng-template #signin>
+    <button md-button routerLink="/login" routerLinkActive="active">Sign in</button>
+  </ng-template>
+</md-toolbar>

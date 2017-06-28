@@ -1,0 +1,29 @@
+@import '~@angular/material/theming';
+
+@mixin app-home-component-theme($theme) {
+    $primary: map-get($theme, primary);
+
+    .header-background {
+        background-color: mat-color($primary);
+        height: 300px;
+        margin-bottom: 40px;
+    }
+
+    .header-headline {
+        color: mat-color($primary, lighter-contrast)
+    }
+
+    .header-section {
+        
+        text-align: center;
+        padding-top: 60px;
+    }
+
+    .header-action {
+         text-align: center;
+         margin: 60px 0;
+    }
+}
+
+
+

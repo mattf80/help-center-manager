@@ -1,0 +1,6 @@
+<app-login-view (loginEvent)="login($event)" (logoutEvent)="logout($event)"></app-login-view>
+
+<pre>
+  {{ authenticated | async }}
+  {{user | async | json}}
+</pre>

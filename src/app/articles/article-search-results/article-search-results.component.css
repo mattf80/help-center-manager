@@ -1,0 +1,24 @@
+.article-wrapper {
+    margin-bottom: 14px;
+}
+
+.article-status {
+    margin-right: 10px;
+}
+
+.article-title {
+    margin: 0px 0px 5px 0px;
+    font-size: 16px;
+}
+
+.article-subtitle {
+    margin-right: 16px;
+}
+
+.pag-controls {
+    text-align: right;
+}
+
+.ngx-pagination li {
+    cursor: pointer !important;
+}
