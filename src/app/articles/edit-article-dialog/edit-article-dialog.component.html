@@ -1,11 +1,11 @@
 <h1 md-dialog-title>Set expiry date</h1>
 <h2 class="mat-subheading-2">{{article.title}}</h2>
 
-<div md-dialog-content fxLayout="column">
+<div md-dialog-content fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="18px">
 
   <div fxFlex>
-    <md-button-toggle-group #group="mdButtonToggleGroup" [(ngModel)]="monthsToAdd" (change)="calcExpDate()" >
-      <md-button-toggle value="3">3 months
+    <md-button-toggle-group #group="mdButtonToggleGroup" color="primary" [(ngModel)]="monthsToAdd" (change)="calcExpDate()">
+      <md-button-toggle color="primary" value="3">3 months
       </md-button-toggle>
       <md-button-toggle value="6">6 months
       </md-button-toggle>
@@ -16,7 +16,7 @@
 
 
   <div class="button-container">
-    <md-radio-group fxLayout="column" [(ngModel)]="startFrom" (change)="calcExpDate()" >
+    <md-radio-group fxLayout="column" [(ngModel)]="startFrom" (change)="calcExpDate()">
       <md-radio-button value='1'>From today</md-radio-button>
       <md-radio-button value='2'>From the current expiry date</md-radio-button>
     </md-radio-group>
@@ -28,7 +28,7 @@
     </p>
     <md-input-container>
       <input mdInput [mdDatepicker]="expDatepicker" [(ngModel)]="newExpiryDate">
-      <button mdSuffix [mdDatepickerToggle]="expDatepicker"></button>
+      <button color="accent" mdSuffix [mdDatepickerToggle]="expDatepicker"></button>
     </md-input-container>
     <md-datepicker #expDatepicker></md-datepicker>
   </div>

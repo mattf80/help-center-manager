@@ -1,0 +1,31 @@
+md-card {
+  padding: 0;
+  margin-top: 24px;
+}
+
+.mat-card-content {
+  font-size: 18px;
+}
+
+.mat-input-container {
+  width: 100%;
+}
+
+.layout-test {
+  background-color: red;
+}
+
+.mat-card-actions {
+  padding: 24px 0px;
+}
+
+.login-view-header {
+  height: 100px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5em;
+}
+
+.controls-container {
+  padding: 24px;
+}

@@ -1,3 +1,6 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from '@angular/material';
 import { AuthRoutingModule } from './auth-routing-module';
 import { AuthService } from './auth.service';
 import { NgModule } from '@angular/core';
@@ -8,7 +11,11 @@ import { LoginViewComponent } from './login/login-view/login-view.component';
 @NgModule({
   imports: [
     CommonModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    MaterialModule,
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [LoginComponent, LoginViewComponent],
   providers: [

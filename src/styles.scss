@@ -11,17 +11,21 @@
 @import './app/app.component.scss';
 @import './app/shared/navbar/navbar-component-theme';
 @import './app/articles/articles-home/articles-home.component.scss-theme';
+@import './app/auth/login/login-view/login-view.component.scss-theme.scss';
 
 @mixin custom-components-theme($theme) {
     @include app-home-component-theme($theme);
     @include navbar-component-theme($theme);
     @include articles-home-component-theme($theme);
+    @include login-view-component-theme($theme);
+    
 }
 
 // specify theme class eg: <body class="my-theme"> ... </body>
 .default-theme {
   font-family: Roboto;
   margin: 0px;
+  
   // use our theme with angular-material-theme mixin
   @include angular-material-theme($my-theme);
   @include custom-components-theme($my-theme);

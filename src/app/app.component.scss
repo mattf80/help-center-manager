@@ -2,6 +2,14 @@
 
 @mixin app-home-component-theme($theme) {
     $primary: map-get($theme, primary);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+
+  .background {
+    color: mat-color($foreground, text);
+    background-color: mat-color($background, background);
+  }
 
     .header-background {
         background-color: mat-color($primary);

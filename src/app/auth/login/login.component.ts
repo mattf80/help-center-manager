@@ -2,18 +2,28 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
+import { MdSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
+  template: `
+      <div fxLayout fxLayoutAlign="center center">
+        <div fxFlex="25%" fxFlex.lt-sm="100%" fxFlex.lt-md="75%" fxFlex.lt-lg="50%">
+          <app-login-view (loginEvent)="login($event)" (logoutEvent)="logout($event)" 
+          [attemptingLogin]="attemptingLogin" [loginError]="loginError"></app-login-view>
+        </div> 
+      </div>
+  `,
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
   user: any;
   authenticated: Observable<boolean>;
+  attemptingLogin: boolean;
+  loginError: string;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, public loginValidationBar: MdSnackBar) {
     this.user = this.authService.currentUser();
     this.authenticated = this.authService.isAuthenticated1();
   }
@@ -23,25 +33,32 @@ export class LoginComponent implements OnInit {
   }
 
   login(model) {
+    this.attemptingLogin = true;
     this.authService.login(model)
+      .delay(2000)
       .subscribe((user) => {
         if (user) {
-          console.log("Logged in: ", user);
-          this.router.navigate(['/articles']);
+          this.loginError = null;
+          this.router.navigate(['/']).then(() => {
+            this.loginValidationBar.open("You are logged in", "Ok", {
+              duration: 3000,
+            });
+          })
         } else {
-          console.log("Login error")
+          this.loginError = "Unable to log you in, please try again."
         }
       },
       (err) => {
-        console.log(err);
+        this.loginError = "Invalid username or password."
+        this.attemptingLogin = false;
       },
       () => {
-        console.log("Done.");
+        this.attemptingLogin = false;
       })
-}
+  }
 
-logout() {
-  this.authService.logout();
-}
+  logout() {
+    this.authService.logout();
+  }
 
 }

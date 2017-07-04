@@ -55,7 +55,9 @@ export class ArticleSearchResultsComponent implements OnInit, OnChanges {
   }
 
   openArticleDialog(article: Article) {
-    let dialog = this.dialog.open(EditArticleDialogComponent);
+    let dialog = this.dialog.open(EditArticleDialogComponent, {
+      width: '600px'
+    });
     let instance = dialog.componentInstance;
     instance.article = article;
 

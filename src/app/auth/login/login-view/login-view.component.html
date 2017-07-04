@@ -1,2 +1,42 @@
-<button md-raised-button (click)="login()" color="primary">Login</button>
-<button md-raised-button (click)="logout()" color="primary">Logout</button>
+<md-card>
+  <md-card-header class="login-view-header">
+    <div fxLayout fxLayoutAlign="start center">
+      <div fxFlexOffset="20px">
+        <p>sign in</p>
+      </div>
+    </div>
+  </md-card-header>
+  <md-progress-bar color="accent" mode="indeterminate" *ngIf="attemptingLogin"></md-progress-bar>
+  <md-card-content>
+    <form novalidate [formGroup]="model" (ngSubmit)="onSubmit()">
+      <div class="controls-container" fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap="18px">
+        <div fxLayout fxLayoutAlign="center center">
+          <div fxFlex fxFlex.gt-xs="75%">
+            <md-input-container floatPlaceholder="auto">
+              <input mdInput formControlName="username" type="email" required placeholder="Email">
+            </md-input-container>
+          </div>
+        </div>
+        <div fxLayout fxLayoutAlign="center center">
+          <div fxFlex fxFlex.gt-xs="75%">
+            <md-input-container floatPlaceholder="auto">
+              <input mdInput formControlName="password" type="password" required placeholder="Password">
+            </md-input-container>
+          </div>
+        </div>
+        <div fxLayout fxLayoutAlign="center center">
+          <div>
+            <button md-raised-button [disabled]="model.invalid" color="accent" type="submit">LOG IN</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </md-card-content>
+  <md-card-footer>
+    <div fxLayout fxLayoutAlign="center center">
+      <div>
+        <p class="caption">{{loginError}}</p>
+      </div>
+    </div>
+  </md-card-footer>
+</md-card>

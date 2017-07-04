@@ -1,0 +1,20 @@
+@import '~@angular/material/theming';
+
+@mixin login-view-component-theme($theme) {
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+
+  .background {
+    color: mat-color($foreground, text);
+    background-color: mat-color($background, background);
+  }
+  .login-view-header {
+    background-color: mat-color($primary);
+    color: mat-color($primary, default-contrast)
+  }
+
+
+}
