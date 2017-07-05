@@ -17,8 +17,25 @@ export class ArticleService {
       .map(Article.fromJsonList)
   }
 
- saveExpiryDate(articleKey: string, newExpiryDate: number) {
+  getArticle(id: number): Observable<Article> {
+    return this.db.list('esolhelpdesk1380528590/articles/', {
+      query: {
+        orderByChild: 'id',
+        equalTo: id
+      }
+    })
+      .map(results => results[0])
+      .map(Article.fromJson);
+  }
+
+  saveExpiryDate(articleKey: string, newExpiryDate: number) {
     return this.db.object(`${this.zendeskInstance}/articles/` + articleKey).update({ expiryDate: newExpiryDate });
+  }
+
+  newArticleTest() {
+    let article = { id: 1, title: "first article test" };
+    let newArticlesRef = this.db.database.ref(`${this.zendeskInstance}/new-articles`);
+    return newArticlesRef.push(article);
   }
 
 }

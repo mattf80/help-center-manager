@@ -10,6 +10,8 @@ import { ArticleSearchResultsComponent } from './article-search-results/article-
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { EditArticleDialogComponent } from './edit-article-dialog/edit-article-dialog.component';
+import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import { ArticlesContainerComponent } from './articles-container/articles-container.component';
 
 
 @NgModule({
@@ -23,7 +25,7 @@ import { EditArticleDialogComponent } from './edit-article-dialog/edit-article-d
     NgxPaginationModule,
     FormsModule
   ],
-  declarations: [ArticlesHomeComponent, ArticleSearchInputComponent, ArticleSearchResultsComponent, EditArticleDialogComponent],
+  declarations: [ArticlesHomeComponent, ArticleSearchInputComponent, ArticleSearchResultsComponent, EditArticleDialogComponent, ArticleDetailComponent, ArticlesContainerComponent],
   providers: [ArticleService],
   entryComponents: [
     EditArticleDialogComponent

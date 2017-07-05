@@ -25,7 +25,7 @@
                         <div fxFlex="5%" class="article-status">
                             <md-icon [style.color]="getColour(article)">fiber_manual_record</md-icon>
                         </div>
-                        <div fxFlex="75%">
+                        <div fxFlex="75%" (click)="selectArticle(article)">
                             <p class="article-title">{{article.title}}</p>
                             <span class="article-subtitle">Author: {{article.user.name}}</span>
                             <span class="article-subtitle">Expires: {{article.expiryDate | date:'dd/MM/yyyy'}}</span>

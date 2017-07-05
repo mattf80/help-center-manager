@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         }
       },
       (err) => {
-        this.loginError = "Invalid username or password."
+        this.loginError = err.message;
         this.attemptingLogin = false;
       },
       () => {

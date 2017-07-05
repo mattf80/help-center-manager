@@ -2,7 +2,8 @@ import { ArticleService } from './../article.service';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { IArticle } from './../article';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IArticle, Article } from './../article';
 
 import 'rxjs/add/observable/of';
 // Observable operators
@@ -18,7 +19,7 @@ import 'rxjs/add/operator/takeUntil';
 })
 export class ArticlesHomeComponent implements OnInit, OnDestroy {
 
-  constructor(private articleService: ArticleService) { }
+  constructor(private articleService: ArticleService, private router: Router) { }
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   articles: Observable<IArticle[]>;
@@ -50,10 +51,15 @@ export class ArticlesHomeComponent implements OnInit, OnDestroy {
     console.log(this.filterBy);
   }
 
+  selectArticle(article: Article) {
+    console.log(article.id);
+    this.router.navigate(['/articles', article.id]);
+  }
+
   ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
-    
+
   }
 
   // advancedFilter() {

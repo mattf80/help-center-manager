@@ -1,7 +1,7 @@
 import { ArticleService } from './../article.service';
 import { EditArticleDialogComponent } from './../edit-article-dialog/edit-article-dialog.component';
 import { IArticle, Article } from './../article';
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { MdDialog } from '@angular/material';
 
 @Component({
@@ -13,22 +13,26 @@ export class ArticleSearchResultsComponent implements OnInit, OnChanges {
 
   constructor(public dialog: MdDialog, private articleService: ArticleService) { }
 
+  //Inputs
   @Input()
   articles: Article[] = [];
-  p: number = 1;
-
-  isHovered: boolean;
-
-  newExpiryDate: number;
-
-  @Input()
-  filterBy: string;
-  filteredArticles: Article[] = [];
-
   @Input()
   sortBy: string;
   @Input()
   sortDir: string = 'ascending';
+  @Input()
+  filterBy: string;
+
+  //Outputs
+  @Output()
+  selectEvent = new EventEmitter<Article>();
+
+  //Regular variables
+  p: number = 1;
+  isHovered: boolean;
+  newExpiryDate: number;
+  filteredArticles: Article[] = [];
+
 
   ngOnInit() {
   }
@@ -84,6 +88,10 @@ export class ArticleSearchResultsComponent implements OnInit, OnChanges {
     } else {
       this.filteredArticles = this.articles.slice(0);
     }
+  }
+
+  selectArticle(article: Article) {
+    this.selectEvent.emit(article);
   }
 }
 

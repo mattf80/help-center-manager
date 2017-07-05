@@ -1,15 +1,18 @@
-<md-card>
-  <md-card-header class="login-view-header">
-    <div fxLayout fxLayoutAlign="start center">
-      <div fxFlexOffset="20px">
-        <p>sign in</p>
+<form novalidate [formGroup]="model" (ngSubmit)="onSubmit()">
+  <md-card>
+    <md-card-header class="login-view-header">
+      <div fxLayout fxLayoutAlign="start center">
+        <div fxFlexOffset="20px">
+          <p>sign in</p>
+        </div>
       </div>
-    </div>
-  </md-card-header>
-  <md-progress-bar color="accent" mode="indeterminate" *ngIf="attemptingLogin"></md-progress-bar>
-  <md-card-content>
-    <form novalidate [formGroup]="model" (ngSubmit)="onSubmit()">
+    </md-card-header>
+    <md-progress-bar color="accent" mode="indeterminate" *ngIf="attemptingLogin"></md-progress-bar>
+    <md-card-content>
       <div class="controls-container" fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap="18px">
+        <p *ngIf="loginError" [ngStyle]="{'color': 'red','font-size': '75%'}">
+          {{loginError}}
+        </p>
         <div fxLayout fxLayoutAlign="center center">
           <div fxFlex fxFlex.gt-xs="75%">
             <md-input-container floatPlaceholder="auto">
@@ -30,13 +33,8 @@
           </div>
         </div>
       </div>
-    </form>
-  </md-card-content>
-  <md-card-footer>
-    <div fxLayout fxLayoutAlign="center center">
-      <div>
-        <p class="caption">{{loginError}}</p>
-      </div>
-    </div>
-  </md-card-footer>
-</md-card>
+    </md-card-content>
+    <md-card-footer>
+    </md-card-footer>
+  </md-card>
+</form>
