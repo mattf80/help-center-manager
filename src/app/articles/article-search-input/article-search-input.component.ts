@@ -36,7 +36,7 @@ export class ArticleSearchInputComponent implements OnInit {
     this.sortingEvent.emit(sort);
   }
 
-  search(term: string, filter: any) {
+  search(term: string) {
     this.searchingEvent.emit(term);
   }
 
