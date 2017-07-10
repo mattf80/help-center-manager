@@ -9,7 +9,7 @@ import { MdSnackBar } from '@angular/material';
   template: `
       <div fxLayout fxLayoutAlign="center center">
         <div fxFlex="25%" fxFlex.lt-sm="100%" fxFlex.lt-md="75%" fxFlex.lt-lg="50%">
-          <app-login-view (loginEvent)="login($event)" (logoutEvent)="logout($event)" 
+          <app-login-view (loginEvent)="login($event)" (logoutEvent)="logout()" 
           [attemptingLogin]="attemptingLogin" [loginError]="loginError"></app-login-view>
         </div> 
       </div>

@@ -11,15 +11,15 @@ export class LoginViewComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   model: FormGroup = new FormGroup({
-    username: new FormControl('frowe.m@hotmail.co.uk'),
-    password: new FormControl('frowem101')
+    username: new FormControl(''),
+    password: new FormControl('')
   })
 
   @Output()
-  loginEvent = new EventEmitter<any>();
+  loginEvent = new EventEmitter();
 
   @Output()
-  logoutEvent = new EventEmitter<any>();
+  logoutEvent = new EventEmitter();
 
   @Input()
   attemptingLogin: boolean = false;
@@ -35,10 +35,6 @@ export class LoginViewComponent implements OnInit {
     this.loginEvent.emit(this.model.value);
   }
 
-  login() {
-    let user = { username: 'frowe.m@hotmail.co.uk', password: 'frowem101' };
-    this.loginEvent.emit(user);
-  }
 
   logout() {
     this.logoutEvent.emit();

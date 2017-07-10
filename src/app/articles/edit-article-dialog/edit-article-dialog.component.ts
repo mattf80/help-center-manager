@@ -1,7 +1,19 @@
 import { Article } from './../article';
 import { Component, OnInit, Input, ViewChild  } from '@angular/core';
-import { MdDialog, MdDialogRef, MdDatepicker } from '@angular/material'
+import { MdDialog, MdDialogRef, MdDatepicker } from '@angular/material';
 import * as moment from 'moment';
+
+export type CustomDateFormats = {
+  parse: {
+    dateInput: 'YYYY'
+  },
+  display: {
+    dateInput: any,
+    monthYearLabel: any,
+    dateA11yLabel: any,
+    monthYearA11yLabel: any,
+  }
+};
 
 @Component({
   selector: 'app-edit-article-dialog',
@@ -13,7 +25,7 @@ export class EditArticleDialogComponent implements OnInit {
   @Input()
   article: Article;
 
-  @ViewChild(MdDatepicker) datepicker: MdDatepicker<Date>;
+  @ViewChild(MdDatepicker) datepicker: MdDatepicker<CustomDateFormats>;
 
   startFrom: number = 1;
   newExpiryDate: string;
