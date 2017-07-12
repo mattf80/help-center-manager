@@ -1,5 +1,30 @@
-<div *ngIf="article">
-  {{article.id}}
+<div fxLayout fxLayoutAlign="center center">
+  <div *ngIf="article" fxFlex="50%">
+    <md-card>
+      <div class="status-stripe">
+
+      </div>
+      <md-card-header>
+
+        <img md-card-avatar src="{{article.user?.photo.content_url}}">
+        <md-card-title>{{article.title}}</md-card-title>
+        <md-card-subtitle>{{article.user.name}}</md-card-subtitle>
+      </md-card-header>
+      <!--<img mdCardImage src="Card wide image source">-->
+      <md-card-content>
+        Text content
+      </md-card-content>
+      <md-card-actions align="end">
+        <button md-button>ADD A REVIEW NOTE</button>
+        <button md-button>CHANGE EXPIRY DATE</button>
+      </md-card-actions>
+      <md-card-footer>
+        Footer
+      </md-card-footer>
+    </md-card>
+  </div>
 </div>
+
+
 
 <button md-raised-button (click)="testPush()" color="primary">Firebase test!</button>

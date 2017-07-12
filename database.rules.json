@@ -1,6 +1,11 @@
 {
   "rules": {
     ".read": "auth != null",
-    ".write": "auth != null"
+    ".write": "auth != null",
+    "esolhelpdesk1380528590": {
+      "articles": {
+        ".indexOn": ["id", "expiryDate"]
+      }
+    }
   }
 }

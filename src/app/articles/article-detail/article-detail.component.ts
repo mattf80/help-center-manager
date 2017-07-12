@@ -21,7 +21,6 @@ export class ArticleDetailComponent implements OnInit {
 
   ngOnInit() {
     const articleId = this.activatedRoute.snapshot.params['id'];
-
     this.articleService.getArticle(+articleId)
       .subscribe(article => {
         this.article = article;
