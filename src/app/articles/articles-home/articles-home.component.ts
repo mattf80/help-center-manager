@@ -22,7 +22,9 @@ export class ArticlesHomeComponent implements OnInit, OnDestroy {
   constructor(private articleService: ArticleService, private router: Router) { }
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
+  loading: boolean = false;
   articles: Observable<IArticle[]>;
+  newArticles: any[];
 
   @Input()
   private searchTerm = new Subject<string>();
@@ -54,6 +56,17 @@ export class ArticlesHomeComponent implements OnInit, OnDestroy {
   selectArticle(article: Article) {
     console.log(article.id);
     this.router.navigate(['/articles', article.id]);
+  }
+
+  loadNewArticles() {
+    this.loading = true;
+    this.articleService.getNewZendeskArticles()
+      .subscribe((data) => {
+        this.newArticles = data.results;
+        console.log(this.newArticles);
+      },
+      (err) => console.log(err),
+      () => this.loading = false);
   }
 
   ngOnDestroy() {

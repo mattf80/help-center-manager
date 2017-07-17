@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 const express = require('express');
+const cors = require('cors')({ origin: true });
 const zendesk = require('./zendesk');
 
 
@@ -9,20 +10,29 @@ admin.initializeApp(functions.config().firebase);
 const app = express();
 
 const authenticate = (req, res, next) => {
+    console.log('Checking if request has a Firebase token attached...')
     if (!req.headers.authorization || !req.headers.authorization.startsWith('Bearer ')) {
+        console.error('No token attached.');
         res.status(403).send('Unauthorized');
         return;
     }
-    const idToken = req.headers.authorization.split('Bearer ')[1];
-    admin.auth().verifyIdToken(idToken).then(decodedIdToken => {
-        req.user = decodedIdToken;
-        console.log(req.user);
-        next();
-    }).catch(error => {
-        res.status(403).send('Unauthorized, bad token.');
-    });
+    let idToken;
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
+        console.log('Authorization header found.');
+        idToken = req.headers.authorization.split('Bearer ')[1];
+
+        admin.auth().verifyIdToken(idToken).then(decodedIdToken => {
+            console.log('ID Token correctly decoded', decodedIdToken);
+            req.user = decodedIdToken;
+            next();
+        }).catch(error => {
+            console.error('Error while verifying Firebase ID token:', error);
+            res.status(403).send('Unauthorized, bad token.');
+        });
+    }
 };
 
+app.use(cors);
 app.use(authenticate);
 
 app.get('/test', (req, res) => {
@@ -38,7 +48,7 @@ app.get('/test', (req, res) => {
 app.get('/articles/refresh', (req, res) => {
     zendesk.articleRefresh(req.query.start_time)
         .then(articles => {
-            res.status(200).send(articles);
+            res.status(200).send({ "results": articles });
         })
         .catch(err => {
             res.status(400).send(err.message)

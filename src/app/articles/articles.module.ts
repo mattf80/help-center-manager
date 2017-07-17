@@ -12,6 +12,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { EditArticleDialogComponent } from './edit-article-dialog/edit-article-dialog.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { ArticlesContainerComponent } from './articles-container/articles-container.component';
+import { ArticlesRefreshComponent } from './articles-refresh/articles-refresh.component';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { ArticlesContainerComponent } from './articles-container/articles-contai
     NgxPaginationModule,
     FormsModule
   ],
-  declarations: [ArticlesHomeComponent, ArticleSearchInputComponent, ArticleSearchResultsComponent, EditArticleDialogComponent, ArticleDetailComponent, ArticlesContainerComponent],
+  declarations: [ArticlesHomeComponent, ArticleSearchInputComponent, ArticleSearchResultsComponent, EditArticleDialogComponent, ArticleDetailComponent, ArticlesContainerComponent, ArticlesRefreshComponent],
   providers: [ArticleService],
   entryComponents: [
     EditArticleDialogComponent
