@@ -63,7 +63,6 @@ export class ArticlesHomeComponent implements OnInit, OnDestroy {
     this.articleService.getNewZendeskArticles()
       .subscribe((data) => {
         this.newArticles = data.results;
-        console.log(this.newArticles);
       },
       (err) => console.log(err),
       () => this.loading = false);

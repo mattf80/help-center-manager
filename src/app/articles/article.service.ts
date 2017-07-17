@@ -20,7 +20,7 @@ export class ArticleService {
 
   constructor(private db: AngularFireDatabase, private http: HttpClient, private authService: AuthService) { 
     this.authService.currentUser().subscribe(user => {
-      user.getIdToken().then(token => this.authToken = token);
+      user.getIdToken(true).then(token => this.authToken = token);
     });
   }
 
@@ -45,7 +45,6 @@ export class ArticleService {
   }
 
   getNewZendeskArticles() {
-    console.log("token: ", this.authToken);
     return this.http.get<ItemsResponse>(`${this.firebaseUrl}/refresh`, {
       params: new HttpParams().set('start_time', '1488326400' ),
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.authToken)
