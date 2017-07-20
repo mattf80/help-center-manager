@@ -11,5 +11,8 @@ export const environment = {
     databaseURL: "https://hc-db-1d9cd.firebaseio.com",
     storageBucket: "hc-db-1d9cd.appspot.com",
     messagingSenderId: "778695230482"
+  },
+  sendgrid: {
+    apiKey: "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"
   }
 };
