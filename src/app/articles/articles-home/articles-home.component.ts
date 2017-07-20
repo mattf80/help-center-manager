@@ -36,8 +36,7 @@ export class ArticlesHomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     //this.advancedFilter();
-    this.articles = this.articleService.getAllArticles()
-      .takeUntil(this.ngUnsubscribe);
+    this.articles = this.articleService.getAllArticles();
   }
 
   search(term: string) {
@@ -63,6 +62,7 @@ export class ArticlesHomeComponent implements OnInit, OnDestroy {
     this.articleService.getNewZendeskArticles()
       .subscribe((data) => {
         this.newArticles = data.results;
+        console.log(`Found ${this.newArticles.length} new articles.`);
       },
       (err) => console.log(err),
       () => this.loading = false);

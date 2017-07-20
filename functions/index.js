@@ -2,6 +2,8 @@ const functions = require('firebase-functions');
 const express = require('express');
 const cors = require('cors')({ origin: true });
 const zendesk = require('./zendesk');
+const sendgrid = require('sendgrid')('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');
+var helper = require('sendgrid').mail;
 
 
 const admin = require('firebase-admin');
@@ -54,6 +56,51 @@ app.get('/articles/refresh', (req, res) => {
             res.status(400).send(err.message)
         });
 });
+
+
+exports.sendMail = functions.https.onRequest((req, res) => {
+    var fromEmail = new helper.Email('orgenduser@gmail.com');
+    var toEmail = new helper.Email('mattfrowe@gmail.com');
+    var subject = 'One of your Help Center articles is about to expire';
+    var content = new helper.Content('text/plain', 'This is the article, yo');
+    var mail = new helper.Mail(fromEmail, subject, toEmail, content);
+
+    var request = sendgrid.emptyRequest({
+        method: 'POST',
+        path: '/v3/mail/send',
+        body: mail.toJSON()
+    });
+
+    return sendgrid.API(request).then(() => {
+        res.send('Email sent!')
+    })
+        .catch(err => {
+            res.send(err);
+        });
+})
+
+exports.addTask = functions.https.onRequest((req, res) => {
+    let tasksRef = admin.database().ref('esolhelpdesk1380528590/tasks');
+
+    let task = {
+        user: {
+            name: 'Terry',
+            email: 'knox.t@cambridgeenglish.org'
+        },
+        article: {
+            id: 123456,
+            title: 'Draft Linguaskill Tech Support article'
+        },
+        taskType: 'review',
+        dueDate: '21/07/2017'
+    }
+
+    tasksRef.push(task).then(result => {
+        console.log(result);
+    })
+        .catch(err => console.log(err));
+})
+
 
 exports.addExpiryFlag = functions.database.ref('/esolhelpdesk1380528590/new-articles')
     .onWrite(event => {
