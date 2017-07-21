@@ -15,8 +15,11 @@
         Text content
       </md-card-content>
       <md-card-actions align="end">
-        <button md-button>ADD A REVIEW NOTE</button>
-        <button md-button>CHANGE EXPIRY DATE</button>
+        <div fxLayout="column">
+          <button md-button>ASK SOMEONE TO REVIEW THIS ARTICLE</button>
+          <button md-button>ADD A REVIEW NOTE</button>
+          <button md-button>CHANGE EXPIRY DATE</button>
+        </div>
       </md-card-actions>
       <md-card-footer>
         Footer
@@ -25,6 +28,6 @@
   </div>
 </div>
 
-
+<app-create-task></app-create-task>
 
 <button md-raised-button (click)="testPush()" color="primary">Firebase test!</button>

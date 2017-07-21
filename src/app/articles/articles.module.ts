@@ -13,11 +13,14 @@ import { EditArticleDialogComponent } from './edit-article-dialog/edit-article-d
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { ArticlesContainerComponent } from './articles-container/articles-container.component';
 import { ArticlesRefreshComponent } from './articles-refresh/articles-refresh.component';
+import { CreateTaskComponent } from './create-task/create-task.component';
+import { CreateTaskViewComponent } from './create-task/create-task-view/create-task-view.component';
 
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MaterialModule,
     MdDatepickerModule,
     MdNativeDateModule,
@@ -26,7 +29,7 @@ import { ArticlesRefreshComponent } from './articles-refresh/articles-refresh.co
     NgxPaginationModule,
     FormsModule
   ],
-  declarations: [ArticlesHomeComponent, ArticleSearchInputComponent, ArticleSearchResultsComponent, EditArticleDialogComponent, ArticleDetailComponent, ArticlesContainerComponent, ArticlesRefreshComponent],
+  declarations: [ArticlesHomeComponent, ArticleSearchInputComponent, ArticleSearchResultsComponent, EditArticleDialogComponent, ArticleDetailComponent, ArticlesContainerComponent, ArticlesRefreshComponent, CreateTaskComponent, CreateTaskViewComponent],
   providers: [ArticleService],
   entryComponents: [
     EditArticleDialogComponent

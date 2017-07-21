@@ -1,3 +1,4 @@
+import { UserService } from './auth/user.service';
 import { MacrosModule } from './macros/macros.module';
 import { ArticlesModule } from './articles/articles.module';
 import { AppRoutingModule } from './app-routing-module';
@@ -43,7 +44,9 @@ import { HomeComponent } from './home/home.component';
     AuthModule,
     MacrosModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

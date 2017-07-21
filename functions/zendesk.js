@@ -1,17 +1,18 @@
 var zendesk = require('node-zendesk');
-var config = require('./config/zendesk.config');
+//var config = require('./config/zendesk.config');
+var functions = require('firebase-functions');
 
 var hc_client = zendesk.createClient({
-    username: config.auth.username,
-    token: config.auth.token,
-    remoteUri: config.auth.hcremoteUri,
+    username: functions.config().zendesk.username,
+    token: functions.config().zendesk.apikey,
+    remoteUri: functions.config().zendesk.hc_url,
     helpcenter: true,
 });
 
 var client = zendesk.createClient({
-    username: config.auth.username,
-    token: config.auth.token,
-    remoteUri: config.auth.remoteUri
+    username: functions.config().zendesk.username,
+    token: functions.config().zendesk.apikey,
+    remoteUri: functions.config().zendesk.hc_url
 });
 
 exports.articleRefresh = function (starttime) {

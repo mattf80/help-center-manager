@@ -1,9 +1,9 @@
 const functions = require('firebase-functions');
-const env = require('./environments/environment');
+//const env = require('./environments/environment');
 const express = require('express');
 const cors = require('cors')({ origin: true });
 const zendesk = require('./zendesk');
-const sendgrid = require('sendgrid')(env.environment.sendgrid.apiKey);
+const sendgrid = require('sendgrid')(functions.config().sendgrid.apikey);
 
 var helper = require('sendgrid').mail;
 
